@@ -147,8 +147,9 @@ function returnToLastMiningPosition(lastMiningX, lastMiningY, lastMiningZ, lastD
     end
 end
 
+turnIterator = 0
+
 for iz = zDimension, 1, -1 do
-    turnIterator = 0
     for iy = yDimension, 1, -1 do
         for ix = xDimension - 1, 1, -1 do
             while robot.detect() do
@@ -185,6 +186,16 @@ for iz = zDimension, 1, -1 do
         currentZ = currentZ + 1
         turn(true)
         turn(true)
+    end
+
+    if currentY == 0 and currentX == 0 then
+        turnIterator = 0
+    elseif currentY ~= 0 and currentX == 0 then
+        turnIterator = 1
+    elseif currentY == 0 and currentX ~= 0 then
+        turnIterator = 1
+    else
+        turnIterator = 0
     end
 end
 
