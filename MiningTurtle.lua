@@ -81,6 +81,14 @@ function dropItems()
     end
 end
 
+function waitForCharging()
+    local lastEnergy = 0
+    while lastEnergy + 50 < computer.energy() do
+        lastEnergy = computer.energy()
+        os.sleep(1)
+    end
+end
+
 function returnToOrigin()
 
     while currentZ ~= 0 do
@@ -112,6 +120,7 @@ function returnToOrigin()
     end
 
     dropItems()
+    waitForCharging()
 
     turn(false)
     turn(false)
